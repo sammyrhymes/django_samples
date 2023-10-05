@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+    <style>
+        *{
+            text-decoration: none;
+        }
+        html{
+            scroll-behavior: smooth;
+        }
+        body{
+            width: 80%;
+            margin: auto;
+            background-color: black;
+            font-family: chivo, sans-serif;
+            color: bisque;
+            text-decoration: none;
+        }
+        ul{
+            list-style-type: none;
+        }
+        .list-item{
+            padding: 5px;
+            width: 600px;
+            margin: left;
+            border-bottom: .7px solid coral;
+        }
+        .list-item a{
+            color: aliceblue;
+            transition: all 300ms ease-in-out;
+        }
+        .list-item a:hover{
+            color: rgb(243, 172, 91);
+        }
+        .blog-details{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1px 0px;
+        }
+        .blog-details strong{
+            color: coral;
+        }
+        ::-webkit-scrollbar{
+            width: 12px;
+        }
+
+        ::-webkit-scrollbar-track{
+            background-color: black;
+        }
+        ::-webkit-scrollbar-thumb{
+            background-color: coral;
+            border-radius: 6px;
+            height: 10px;
+        }
+
+    </style>
+</head>
+<body>
+    {% for blog in blog_data %}
+        <ul>
+            <li class="list-item">
+                    <div class="blog-details"><p> <a href="{% url 'blog:writer' blog.blogger_id %}">{{blog.blogger}} </a>  </p><p><strong>{{blog.pub_date}}</strong></p>
+                    </div>
+                        <a href="{% url 'blog:article' blog.blog_id %}">
+                            <h4>{{ blog.title}} </h4>
+                <p>{{blog.body}}</p>
+            </a>
+            </li>
+        </ul>
+    {% endfor%}
+</body>
+</html>
