@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_list_or_404, get_object_or_404
 from django.http import HttpResponse
 from .models import Blog, Blogger
+from django.db.models import Count
 
 # Create your views here.
 def feed(request):
@@ -23,9 +24,11 @@ def feed(request):
 
 def article(request, blog_id):
     blog = Blog.objects.get(pk = blog_id)
+    ranks = Blogger.objects.annotate(blog_count = Count('blog')).order_by('-blog_count')[:5]
     context = {
         "blog":blog,
-        "title": "blog"
+        "title": "blog",
+        "ranks": ranks
     }
     return render(request, "blog/blog.html", context)
 
