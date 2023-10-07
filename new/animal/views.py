@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import Dog, Horse, Cat
 from django.http import HttpResponse
 from django.views import View
@@ -24,3 +24,17 @@ class HorseListView(ListView):
 
 class DogListView(HorseListView):
     model = Dog
+
+class AddDog(View):
+    def get(self, request):
+        name = request.session.get('name', False)
+        if (name) : del(request.session['name'])
+        return render(request, 'animal/addDog.html')
+    
+    def post(self, request):
+        name = request.POST.get("dog_name")
+        age = request.POST.get("dog_age")
+        d = Dog(Name = name, age = age)
+        d.save()
+        request.session['msg'] = name
+        return redirect(request.path)
