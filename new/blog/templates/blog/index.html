@@ -19,9 +19,29 @@
             font-family: chivo, sans-serif;
             color: bisque;
             text-decoration: none;
+
+        }
+        nav{
+            height: 6vh;
+        }
+        .nav-items{
+            width: 40%;
+            margin: auto;
             display: flex;
             justify-content: space-between;
-            margin-top: 20px;
+        }
+        .nav-items a{
+            color: coral;
+            font-weight: 600;
+            transition: all 300ms ease-in-out;
+        }
+        .nav-items a:hover{
+            color: rgb(245, 89, 32);
+            transform: scale(1.1);
+        }
+        .content{
+            display: flex;
+            justify-content: space-between;
         }
         .articles{
             overflow: auto;
@@ -63,19 +83,80 @@
             border-radius: 6px;
             height: 10px;
         }
-        .bloggers{
-            border: 2px solid coral;
-            width: 25%;
-            border-radius: 16px;
-            height: 40vh;
+        .sidebar{
+            border: 1px solid coral;
+            border-radius: 1rem;
+            width: 26%;
+            height: max-content;
+            margin: auto;
             position: fixed;
-            top:50px;
-            right: 100px;
+            right: 9rem;
+        }
+        .bloggers h4{
+            text-align: center;
+        }
+        .bloggers{
+            margin: auto;
+            margin-right: 35px;
+        }
+        .blogger{
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            border-bottom: 1px solid coral;
+        }
+        .blogger a{
+            color: coral;
+            transition: all  300ms ease-in-out;
+        }
+        .blogger a:hover{
+            transform: scale(1.1);
+            color: rgb(243, 172, 91);
+        }
+        .addNew{
+            width: 80%;
+            margin: auto;
+            padding: 2rem;
+        }
+        .addNew p a{
+            color: coral;
+            font-weight: 600;
+            transition: all 300ms ease-in-out;
+        }
+        .addNew p a:hover{
+            color: rgb(245, 89, 32);
+            transform: scale(1.1);
         }
 
     </style>
 </head>
 <body>
+    <nav>
+        <ul class="nav-items">
+            <li class="nav_item">
+                <p>
+                    <a href="{% url 'blog:add_blogger' %}">
+                        blogger
+                    </a>
+                </p>
+            </li>
+            <li class="nav_item">
+                <p>
+                    <a href="">
+                        feed
+                    </a>
+                </p>
+            </li>
+            <li class="nav_item">
+                <p>
+                    <a href="{% url 'blog:add_blog' %}">
+                        blog
+                    </a>
+                </p>
+            </li>
+        </ul>
+    </nav>
+    <div class="content">
     <div class="articles">
     {% for blog in blog_data %}
         <ul>
@@ -90,6 +171,7 @@
         </ul>
         {% endfor%}
     </div>
+    <div class="sidebar">
         <div class="bloggers">
         <h4>Top bloggers!</h4>
             <ul>
@@ -101,6 +183,13 @@
                 {% endfor %}
             </ul>
         </div>
-
+        <div class="addNew">
+            <h3>Join Our Team of writers</h3>
+            <p><a href="{% url 'blog:add_blog' %}">Add a new blog</a></p>
+            <h3>Continue where you left off</h3>
+            <p><a href="{% url 'blog:add_blogger' %}">Add a new blogger</a></p>
+        </div>
+    </div>
+</div>
 </body>
 </html>

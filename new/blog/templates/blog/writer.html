@@ -65,7 +65,7 @@
     <p class="bio"><span>Bio: </span>{{ writer.bio}}</p>
     
     <ul>
-        {% for blog in writer.blog_set.all %}
+        {% for blog in blogs %}
             <li class="list-item">
                 <a href="{% url 'blog:article' blog.id %}"><span class="blog">{{ blog.title }}</span></a>
                 <p>{{ blog.body }}</p>

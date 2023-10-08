@@ -21,17 +21,7 @@
         </p>
         {% endif %}
     </ul>
-    <h2>
-        Add dog
-    </h2>
-    <form action="" method="post">
-        {% csrf_token %}
-        <label for="dog_name">Input dog name</label>
-        <input type="text" name="dog_name" id="dog_name">
-        <label for="dog_age">Input dog age</label>
-        <input type="number" min="1" max="120" name="dog_age" id="dog_age">
-        <input type="submit" name="submit">
-    </form>
+
     <p>
         <a href="{% url 'animal:dogs' %}">intersted in dogs</a>
        </p> <p><a href="{% url 'animal:horses' %}">intersted in horses</a>
