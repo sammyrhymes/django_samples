@@ -8,4 +8,5 @@ urlpatterns = [
     path('writer/<int:blogger_id>/', views.writer, name="writer"),
     path('add_blog/', views.AddBlog.as_view(), name='add_blog'),
     path('add_blogger/', views.AddBlogger.as_view(), name='add_blogger'),
+    path('add_student/', views.AddStudent.as_view(), name='add_student'),
 ]

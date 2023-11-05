@@ -4,6 +4,7 @@ from .models import Blog, Blogger
 from django.db.models import Count
 from django.views import View
 from django.utils import timezone
+from .forms import studentForm
 
 # Create your views here.
 def feed(request):
@@ -98,3 +99,29 @@ class AddBlogger(View):
         request.session['message'] = bio
 
         return redirect(request.path)
+    
+class AddStudent(View):
+
+    def get(self, request):
+        form = studentForm()
+        context = {
+            "form" : form
+        }
+        return render(request, 'blog/student.html', context=context)
+    
+    def post(self, request):
+
+        form = studentForm(request.POST)
+        if form.is_valid():
+
+            name = form.cleaned_data['name']
+            age = form.cleaned_data['age']
+            course = form.cleaned_data['course']
+            context = {
+                'name' : name,
+                'age' : age,
+                'course' : course
+            }
+            return HttpResponse(context)
+        
+        return HttpResponse("not valid")
