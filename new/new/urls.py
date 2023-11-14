@@ -22,4 +22,5 @@ urlpatterns = [
     path('polls/', include("polls.urls")),
     path('', include("blog.urls")),
     path('animal/', include("animal.urls")),
+    path('socials/', include("socials.urls")),
 ]

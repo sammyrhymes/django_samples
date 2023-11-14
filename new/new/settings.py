@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'blog.apps.BlogConfig',
     'animal.apps.AnimalConfig',
     'library.apps.LibraryConfig',
+    'socials.apps.SocialsConfig',
 ]
 
 MIDDLEWARE = [
