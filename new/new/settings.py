@@ -44,6 +44,8 @@ INSTALLED_APPS = [
     'animal.apps.AnimalConfig',
     'library.apps.LibraryConfig',
     'socials.apps.SocialsConfig',
+    'authz.apps.AuthzConfig',
+    'form.apps.FormConfig',
 ]
 
 MIDDLEWARE = [
